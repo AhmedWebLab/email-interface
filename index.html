@@ -1,11 +1,641 @@
-┌─────────────────────────────────────────────┐
-│  ✉ MyMail       🔍 Search        👤 Ahmed   │
-├──────────────┬──────────────────────────────┤
-│ + Compose    │ Inbox                        │
-│              │                              │
-│ 📥 Inbox     │ John     Meeting tomorrow    │
-│ ⭐ Starred   │ Ali      Documents attached  │
-│ 📤 Sent      │ Hansa    How are you?        │
-│ 📝 Drafts    │                              │
-│ 🗑 Trash     │                              │
-└──────────────┴──────────────────────────────┘
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gmail Style Inbox</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #202124;
+    background: white;
+}
+
+/* TOP BAR */
+.top {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    gap: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.menu {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 26px;
+}
+
+.logo-m {
+    color: #d93025;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.search {
+    height: 60px;
+    max-width: 880px;
+    flex: 1;
+    background: #f1f3f4;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    color: #777;
+    font-size: 18px;
+}
+
+.search-icon {
+    font-size: 27px;
+    margin-right: 15px;
+}
+
+.top-icons {
+    display: flex;
+    gap: 22px;
+    font-size: 24px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #777;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+    height: calc(100vh - 90px);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 350px;
+    padding: 15px 10px;
+    border-right: 1px solid #eee;
+}
+
+.compose {
+    background: #c2e7ff;
+    border: none;
+    border-radius: 18px;
+    padding: 18px 30px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    padding: 12px 25px;
+    border-radius: 0 25px 25px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+}
+
+.nav li.active {
+    background: #d3e3fd;
+    font-weight: bold;
+}
+
+.nav li .number {
+    margin-left: auto;
+}
+
+.labels {
+    padding: 30px 25px 10px;
+    font-weight: bold;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    min-width: 0;
+}
+
+.toolbar {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 0 25px;
+    border-bottom: 1px solid #eee;
+    font-size: 22px;
+}
+
+.count {
+    margin-left: auto;
+    font-size: 14px;
+    color: #555;
+}
+
+/* TABS */
+.tabs {
+    height: 70px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.tab {
+    flex: 1;
+    padding: 23px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tab.active {
+    color: #0655d6;
+    border-bottom: 3px solid #1a73e8;
+}
+
+/* EMAIL */
+.mail {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 0 22px;
+    gap: 17px;
+    font-size: 15px;
+}
+
+.mail:hover {
+    box-shadow: 0 1px 5px #ddd;
+    position: relative;
+}
+
+.unread {
+    background: #f5f8fc;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #aaa;
+    border-radius: 3px;
+}
+
+.star {
+    font-size: 21px;
+    color: #777;
+}
+
+.sender {
+    width: 220px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subject {
+    flex: 1;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preview {
+    color: #666;
+    font-weight: normal;
+}
+
+.date {
+    width: 70px;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* MOBILE */
+@media(max-width: 800px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .sender {
+        width: 120px;
+    }
+
+    .top-icons {
+        display: none;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .top {
+        padding: 0 12px;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .search {
+        font-size: 14px;
+    }
+
+    .mail {
+        padding: 0 10px;
+        gap: 8px;
+    }
+
+    .sender {
+        width: 90px;
+    }
+
+    .date {
+        width: 50px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+
+<header class="top">
+
+    <div class="menu">☰</div>
+
+    <div class="logo">
+        <span class="logo-m">M</span>
+        <span>Gmail</span>
+    </div>
+
+    <div class="search">
+        <span class="search-icon">⌕</span>
+        <span>Search mail</span>
+    </div>
+
+    <div class="top-icons">
+        <span>?</span>
+        <span>⚙</span>
+        <span>✦</span>
+        <span>⠿</span>
+    </div>
+
+    <div class="avatar">U</div>
+
+</header>
+
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <button class="compose"
+        onclick="alert('Compose button clicked')">
+        ✎ &nbsp; <b>Compose</b>
+    </button>
+
+    <ul class="nav">
+
+        <li class="active">
+            ▣
+            <span>Inbox</span>
+            <span class="number">791</span>
+        </li>
+
+        <li>
+            ☆
+            <span>Starred</span>
+        </li>
+
+        <li>
+            ◷
+            <span>Snoozed</span>
+        </li>
+
+        <li>
+            ➤
+            <span>Sent</span>
+        </li>
+
+        <li>
+            ▱
+            <span>Drafts</span>
+            <span class="number">1</span>
+        </li>
+
+        <li>
+            ▣
+            <span>Purchases</span>
+            <span class="number">10</span>
+        </li>
+
+        <li>
+            ⌄
+            <span>More</span>
+        </li>
+
+    </ul>
+
+    <div class="labels">
+        Labels
+        <span style="float:right;">＋</span>
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main class="main">
+
+    <div class="toolbar">
+
+        <span>□</span>
+        <span>⌄</span>
+        <span>↻</span>
+        <span>⋮</span>
+
+        <div class="count">
+            51–100 of 2,341 &nbsp; ‹ &nbsp; ›
+        </div>
+
+    </div>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <div class="tab active">
+            ▣ &nbsp; Primary
+        </div>
+
+        <div class="tab">
+            ▱ &nbsp; Promotions
+            <small style="
+                background:#188038;
+                color:white;
+                border-radius:10px;
+                padding:3px 7px;">
+                2 new
+            </small>
+        </div>
+
+        <div class="tab">
+            ♙ &nbsp; Social
+        </div>
+
+        <div class="tab">
+            ⓘ &nbsp; Updates
+        </div>
+
+    </div>
+
+
+    <!-- EMAIL LIST -->
+
+    <div class="mail unread">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            HBL AMC BULK ALERTS
+        </div>
+
+        <div class="subject">
+            Procedure for Complaint Handling – MUFAP
+            <span class="preview">
+                - Dear Valued Customer, Please find attached...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 25
+        </div>
+
+    </div>
+
+
+    <div class="mail unread">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            TikTok
+        </div>
+
+        <div class="subject">
+            ✈️ your memories on TikTok
+            <span class="preview">
+                - Video you posted: 🇷🇸 Serbia V...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 24
+        </div>
+
+    </div>
+
+
+    <div class="mail unread">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            Vakbeurs Energie
+        </div>
+
+        <div class="subject">
+            Gelijkspanning in uw project?
+            <span class="preview">
+                - Stel uw vragen aan specialisten...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 24
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            LinkedIn
+        </div>
+
+        <div class="subject">
+            Bayer is hiring in Remote
+            <span class="preview">
+                - Discover roles that match your interests
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 24
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            LinkedIn Job Alerts
+        </div>
+
+        <div class="subject">
+            Business Development Manager | Poland
+            <span class="preview">
+                - GrainODM Business Development...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 24
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            TikTok
+        </div>
+
+        <div class="subject">
+            user3541600736732 sent you a message
+            <span class="preview">
+                - Reply on TikTok
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 24
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            LinkedIn Job Alerts
+        </div>
+
+        <div class="subject">
+            Research Specialist, Agriculture
+            <span class="preview">
+                - LSEG Research Specialist...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 23
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            LinkedIn
+        </div>
+
+        <div class="subject">
+            Bakhtiar Ali recently posted
+            <span class="preview">
+                - One of the most discussed cases...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 23
+        </div>
+
+    </div>
+
+
+    <div class="mail">
+
+        <div class="checkbox"></div>
+        <div class="star">☆</div>
+
+        <div class="sender">
+            LinkedIn Job Alerts
+        </div>
+
+        <div class="subject">
+            Sales Manager at AB Neo
+            <span class="preview">
+                - AB Neo Sales Manager...
+            </span>
+        </div>
+
+        <div class="date">
+            Sep 23
+        </div>
+
+    </div>
+
+
+</main>
+
+</div>
+
+</body>
+</html>
