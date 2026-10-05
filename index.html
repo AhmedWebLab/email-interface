@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gmail Style Inbox</title>
+<title>Gmail Inbox Demo</title>
 
 <style>
 * {
@@ -14,94 +14,118 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #202124;
-    background: white;
+    background: #fff;
 }
 
-/* TOP BAR */
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+/* ================= TOP BAR ================= */
+
 .top {
-    height: 90px;
+    height: 96px;
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    gap: 25px;
-    border-bottom: 1px solid #eee;
+    padding: 0 30px;
+    gap: 28px;
+    background: #f8fafd;
 }
 
 .menu {
-    font-size: 30px;
+    font-size: 29px;
+    width: 34px;
     cursor: pointer;
 }
 
-.logo {
+.brand {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 26px;
+    font-size: 28px;
+    min-width: 270px;
 }
 
-.logo-m {
-    color: #d93025;
-    font-size: 35px;
-    font-weight: bold;
+.gmail-logo {
+    color: #ea4335;
+    font-size: 42px;
+    font-weight: 900;
 }
 
 .search {
-    height: 60px;
-    max-width: 880px;
+    height: 64px;
+    max-width: 790px;
     flex: 1;
-    background: #f1f3f4;
-    border-radius: 35px;
+    background: #e9eef6;
+    border-radius: 34px;
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    color: #777;
-    font-size: 18px;
+    padding: 0 27px;
+    color: #59636f;
+    font-size: 21px;
 }
 
 .search-icon {
-    font-size: 27px;
-    margin-right: 15px;
+    font-size: 34px;
+    margin-right: 20px;
 }
 
-.top-icons {
+.filter {
+    margin-left: auto;
+    font-size: 25px;
+}
+
+.actions {
     display: flex;
-    gap: 22px;
-    font-size: 24px;
+    align-items: center;
+    gap: 27px;
+    font-size: 26px;
+    margin-left: auto;
+}
+
+.upgrade {
+    background: #d7e7ff;
+    border: 0;
+    border-radius: 28px;
+    padding: 15px 28px;
+    color: #174ea6;
+    cursor: pointer;
 }
 
 .avatar {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #777;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+    background: #e87500;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
 }
 
-/* LAYOUT */
+/* ================= LAYOUT ================= */
+
 .layout {
     display: flex;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 96px);
 }
 
-/* SIDEBAR */
 .sidebar {
-    width: 350px;
-    padding: 15px 10px;
-    border-right: 1px solid #eee;
+    width: 390px;
+    background: #f8fafd;
+    padding: 25px 0 0 5px;
 }
 
 .compose {
     background: #c2e7ff;
-    border: none;
+    border: 0;
     border-radius: 18px;
-    padding: 18px 30px;
-    font-size: 17px;
+    padding: 20px 34px;
+    margin-bottom: 18px;
+    font-size: 18px;
     cursor: pointer;
-    margin-bottom: 15px;
 }
 
 .nav {
@@ -111,104 +135,150 @@ body {
 }
 
 .nav li {
-    padding: 12px 25px;
-    border-radius: 0 25px 25px 0;
+    height: 49px;
+    padding: 0 25px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-size: 16px;
+    gap: 20px;
+    border-radius: 0 25px 25px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nav li:hover {
+    background: #e8f0fe;
 }
 
 .nav li.active {
-    background: #d3e3fd;
-    font-weight: bold;
+    background: #cfe1fb;
+    font-weight: 700;
 }
 
-.nav li .number {
+.num {
     margin-left: auto;
 }
 
 .labels {
-    padding: 30px 25px 10px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 31px 35px;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 .main {
     flex: 1;
     min-width: 0;
 }
 
 .toolbar {
-    height: 65px;
+    height: 73px;
     display: flex;
     align-items: center;
-    gap: 25px;
-    padding: 0 25px;
+    padding: 0 30px;
+    gap: 26px;
     border-bottom: 1px solid #eee;
-    font-size: 22px;
+    font-size: 25px;
+}
+
+.toolbar span {
+    cursor: pointer;
 }
 
 .count {
     margin-left: auto;
-    font-size: 14px;
+    font-size: 16px;
     color: #555;
 }
 
-/* TABS */
+/* ================= TABS ================= */
+
 .tabs {
-    height: 70px;
+    height: 84px;
     display: flex;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
 }
 
 .tab {
     flex: 1;
-    padding: 23px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 22px 38px;
+    font-size: 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
 }
 
 .tab.active {
-    color: #0655d6;
-    border-bottom: 3px solid #1a73e8;
+    border-color: #1967d2;
+    color: #1967d2;
 }
 
-/* EMAIL */
+.badge {
+    border-radius: 14px;
+    padding: 3px 9px;
+    font-size: 14px;
+    color: white;
+    background: #188038;
+    margin-left: 8px;
+}
+
+.blue {
+    background: #1a73e8;
+}
+
+.orange {
+    background: #e37400;
+}
+
+.sub {
+    display: block;
+    color: #777;
+    font-size: 16px;
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ================= EMAIL LIST ================= */
+
 .mail {
-    min-height: 58px;
+    height: 62px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding: 0 22px;
+    padding: 0 30px;
     gap: 17px;
-    font-size: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    cursor: pointer;
+    font-size: 17px;
 }
 
 .mail:hover {
-    box-shadow: 0 1px 5px #ddd;
+    box-shadow: 0 1px 5px #ccc;
     position: relative;
+    z-index: 2;
 }
 
-.unread {
-    background: #f5f8fc;
+.mail.unread {
+    background: #f1f6fc;
 }
 
-.checkbox {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #aaa;
+.check {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #aeb4bb;
     border-radius: 3px;
+    flex: none;
 }
 
 .star {
-    font-size: 21px;
-    color: #777;
+    font-size: 27px;
+    color: #a7adb4;
+    width: 30px;
 }
 
 .sender {
-    width: 220px;
-    font-weight: bold;
+    width: 290px;
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -216,57 +286,197 @@ body {
 
 .subject {
     flex: 1;
-    font-weight: bold;
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .preview {
+    font-weight: 400;
     color: #666;
-    font-weight: normal;
 }
 
 .date {
-    width: 70px;
+    width: 82px;
     text-align: right;
-    font-size: 13px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* ================= OPEN EMAIL ================= */
+
+.reader {
+    display: none;
+    height: 100%;
+    overflow: auto;
+}
+
+.reader.show {
+    display: block;
+}
+
+.inbox.hide {
+    display: none;
+}
+
+.reader-head {
+    height: 73px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 0 30px;
+    font-size: 24px;
+}
+
+.reader-head span {
+    cursor: pointer;
+}
+
+.reader-title {
+    font-size: 23px;
+    padding: 30px 50px 15px;
+}
+
+.message-meta {
+    display: flex;
+    gap: 15px;
+    padding: 0 50px 25px;
+}
+
+.message-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e87500;
+    color: white;
+    display: grid;
+    place-items: center;
     font-weight: bold;
 }
 
-/* MOBILE */
-@media(max-width: 800px) {
+.meta-text {
+    font-size: 15px;
+}
+
+.body {
+    padding: 15px 110px 60px;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 1000px;
+}
+
+.reply {
+    margin-top: 35px;
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    padding: 12px 22px;
+    width: max-content;
+    color: #1a73e8;
+    cursor: pointer;
+}
+
+/* ================= COMPOSE ================= */
+
+.compose-modal {
+    display: none;
+    position: fixed;
+    right: 25px;
+    bottom: 0;
+    width: 500px;
+    background: white;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 3px 20px #999;
+    z-index: 20;
+}
+
+.compose-modal.show {
+    display: block;
+}
+
+.compose-title {
+    background: #f2f6fc;
+    padding: 14px 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.compose-title span:last-child {
+    cursor: pointer;
+}
+
+.field {
+    padding: 12px 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.field input,
+.field textarea {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    font-size: 15px;
+}
+
+.field textarea {
+    height: 180px;
+    resize: none;
+}
+
+.send {
+    margin: 15px 18px;
+    background: #0b57d0;
+    color: #fff;
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px) {
 
     .sidebar {
-        width: 220px;
+        width: 250px;
+    }
+
+    .brand {
+        min-width: 150px;
+    }
+
+    .upgrade {
+        display: none;
     }
 
     .sender {
-        width: 120px;
-    }
-
-    .top-icons {
-        display: none;
+        width: 180px;
     }
 }
 
-@media(max-width: 600px) {
+@media(max-width:700px) {
 
     .sidebar {
+        display: none;
+    }
+
+    .brand {
+        min-width: auto;
+    }
+
+    .actions span {
         display: none;
     }
 
     .top {
         padding: 0 12px;
-        gap: 12px;
-    }
-
-    .logo {
-        font-size: 20px;
+        gap: 10px;
     }
 
     .search {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .mail {
@@ -275,11 +485,21 @@ body {
     }
 
     .sender {
-        width: 90px;
+        width: 100px;
     }
 
-    .date {
-        width: 50px;
+    .body {
+        padding: 15px 25px;
+    }
+
+    .reader-title,
+    .message-meta {
+        padding-left: 25px;
+    }
+
+    .compose-modal {
+        width: 95%;
+        right: 2.5%;
     }
 }
 </style>
@@ -287,108 +507,200 @@ body {
 
 <body>
 
-<!-- TOP HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header class="top">
 
-    <div class="menu">☰</div>
+    <div class="menu">
+        ☰
+    </div>
 
-    <div class="logo">
-        <span class="logo-m">M</span>
+    <div class="brand">
+        <span class="gmail-logo">M</span>
         <span>Gmail</span>
     </div>
 
     <div class="search">
-        <span class="search-icon">⌕</span>
-        <span>Search mail</span>
+
+        <span class="search-icon">
+            ⌕
+        </span>
+
+        <span>
+            Search mail
+        </span>
+
+        <span class="filter">
+            ☷
+        </span>
+
     </div>
 
-    <div class="top-icons">
+    <div class="actions">
+
         <span>?</span>
-        <span>⚙</span>
-        <span>✦</span>
-        <span>⠿</span>
-    </div>
 
-    <div class="avatar">U</div>
+        <span>⚙</span>
+
+        <button class="upgrade">
+            Upgrade
+        </button>
+
+        <span>✦</span>
+
+        <span>⠿</span>
+
+        <span class="avatar">
+            A
+        </span>
+
+    </div>
 
 </header>
 
 
 <div class="layout">
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-    <button class="compose"
-        onclick="alert('Compose button clicked')">
-        ✎ &nbsp; <b>Compose</b>
+    <button
+        class="compose"
+        onclick="openCompose()">
+
+        ✎ &nbsp;
+        <b>Compose</b>
+
     </button>
 
     <ul class="nav">
 
         <li class="active">
+
             ▣
-            <span>Inbox</span>
-            <span class="number">791</span>
+
+            <span>
+                Inbox
+            </span>
+
+            <span class="num">
+                1,049
+            </span>
+
         </li>
 
         <li>
+
             ☆
-            <span>Starred</span>
+
+            <span>
+                Starred
+            </span>
+
         </li>
 
         <li>
+
             ◷
-            <span>Snoozed</span>
+
+            <span>
+                Snoozed
+            </span>
+
         </li>
 
         <li>
+
             ➤
-            <span>Sent</span>
+
+            <span>
+                Sent
+            </span>
+
         </li>
 
         <li>
+
             ▱
-            <span>Drafts</span>
-            <span class="number">1</span>
+
+            <span>
+                Drafts
+            </span>
+
         </li>
 
         <li>
-            ▣
-            <span>Purchases</span>
-            <span class="number">10</span>
+
+            ▢
+
+            <span>
+                Purchases
+            </span>
+
+            <span class="num">
+                158
+            </span>
+
         </li>
 
         <li>
+
             ⌄
-            <span>More</span>
+
+            <span>
+                More
+            </span>
+
         </li>
 
     </ul>
 
     <div class="labels">
+
         Labels
-        <span style="float:right;">＋</span>
+
+        <span style="float:right">
+            ＋
+        </span>
+
     </div>
 
 </aside>
 
 
-<!-- MAIN CONTENT -->
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
+<section id="inbox" class="inbox">
+
     <div class="toolbar">
 
-        <span>□</span>
-        <span>⌄</span>
-        <span>↻</span>
-        <span>⋮</span>
+        <span>
+            □
+        </span>
+
+        <span>
+            ⌄
+        </span>
+
+        <span>
+            ↻
+        </span>
+
+        <span>
+            ⋮
+        </span>
 
         <div class="count">
-            51–100 of 2,341 &nbsp; ‹ &nbsp; ›
+
+            1–50 of 1,218
+            &nbsp;
+            ‹
+            &nbsp;
+            ›
+
         </div>
 
     </div>
@@ -399,243 +711,512 @@ body {
     <div class="tabs">
 
         <div class="tab active">
-            ▣ &nbsp; Primary
+
+            ▣ &nbsp;
+            Primary
+
         </div>
+
 
         <div class="tab">
-            ▱ &nbsp; Promotions
-            <small style="
-                background:#188038;
-                color:white;
-                border-radius:10px;
-                padding:3px 7px;">
-                2 new
-            </small>
+
+            ▱ &nbsp;
+            Promotions
+
+            <span class="badge">
+                50 new
+            </span>
+
+            <span class="sub">
+                Eva via 10times — Remin...
+            </span>
+
         </div>
+
 
         <div class="tab">
-            ♙ &nbsp; Social
+
+            ♙ &nbsp;
+            Social
+
+            <span class="badge blue">
+                29 new
+            </span>
+
+            <span class="sub">
+                Facebook Friend Sugges...
+            </span>
+
         </div>
+
 
         <div class="tab">
-            ⓘ &nbsp; Updates
-        </div>
 
-    </div>
+            ⓘ &nbsp;
+            Updates
 
-
-    <!-- EMAIL LIST -->
-
-    <div class="mail unread">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            HBL AMC BULK ALERTS
-        </div>
-
-        <div class="subject">
-            Procedure for Complaint Handling – MUFAP
-            <span class="preview">
-                - Dear Valued Customer, Please find attached...
+            <span class="badge orange">
+                48 new
             </span>
-        </div>
 
-        <div class="date">
-            Sep 25
-        </div>
-
-    </div>
-
-
-    <div class="mail unread">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            TikTok
-        </div>
-
-        <div class="subject">
-            ✈️ your memories on TikTok
-            <span class="preview">
-                - Video you posted: 🇷🇸 Serbia V...
+            <span class="sub">
+                ChatGPT — 4 new image...
             </span>
-        </div>
 
-        <div class="date">
-            Sep 24
         </div>
 
     </div>
 
 
-    <div class="mail unread">
+    <!-- EMAILS -->
 
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
+    <div id="mailList"></div>
 
-        <div class="sender">
-            Vakbeurs Energie
-        </div>
-
-        <div class="subject">
-            Gelijkspanning in uw project?
-            <span class="preview">
-                - Stel uw vragen aan specialisten...
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 24
-        </div>
-
-    </div>
+</section>
 
 
-    <div class="mail">
+<!-- ================= EMAIL READER ================= -->
 
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
+<section id="reader" class="reader">
 
-        <div class="sender">
-            LinkedIn
-        </div>
+    <div class="reader-head">
 
-        <div class="subject">
-            Bayer is hiring in Remote
-            <span class="preview">
-                - Discover roles that match your interests
-            </span>
-        </div>
+        <span onclick="closeMail()">
+            ←
+        </span>
 
-        <div class="date">
-            Sep 24
-        </div>
+        <span>
+            ↶
+        </span>
+
+        <span>
+            ↪
+        </span>
+
+        <span>
+            🗑
+        </span>
+
+        <span>
+            ✉
+        </span>
+
+        <span>
+            ⋮
+        </span>
 
     </div>
 
+    <div id="readerContent"></div>
 
-    <div class="mail">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            LinkedIn Job Alerts
-        </div>
-
-        <div class="subject">
-            Business Development Manager | Poland
-            <span class="preview">
-                - GrainODM Business Development...
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 24
-        </div>
-
-    </div>
-
-
-    <div class="mail">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            TikTok
-        </div>
-
-        <div class="subject">
-            user3541600736732 sent you a message
-            <span class="preview">
-                - Reply on TikTok
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 24
-        </div>
-
-    </div>
-
-
-    <div class="mail">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            LinkedIn Job Alerts
-        </div>
-
-        <div class="subject">
-            Research Specialist, Agriculture
-            <span class="preview">
-                - LSEG Research Specialist...
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 23
-        </div>
-
-    </div>
-
-
-    <div class="mail">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            LinkedIn
-        </div>
-
-        <div class="subject">
-            Bakhtiar Ali recently posted
-            <span class="preview">
-                - One of the most discussed cases...
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 23
-        </div>
-
-    </div>
-
-
-    <div class="mail">
-
-        <div class="checkbox"></div>
-        <div class="star">☆</div>
-
-        <div class="sender">
-            LinkedIn Job Alerts
-        </div>
-
-        <div class="subject">
-            Sales Manager at AB Neo
-            <span class="preview">
-                - AB Neo Sales Manager...
-            </span>
-        </div>
-
-        <div class="date">
-            Sep 23
-        </div>
-
-    </div>
-
+</section>
 
 </main>
 
 </div>
+
+
+<!-- ================= COMPOSE WINDOW ================= -->
+
+<div
+    id="composeBox"
+    class="compose-modal">
+
+    <div class="compose-title">
+
+        <span>
+            New Message
+        </span>
+
+        <span onclick="closeCompose()">
+            ✕
+        </span>
+
+    </div>
+
+    <div class="field">
+
+        <input
+            type="text"
+            placeholder="Recipients">
+
+    </div>
+
+    <div class="field">
+
+        <input
+            type="text"
+            placeholder="Subject">
+
+    </div>
+
+    <div class="field">
+
+        <textarea
+            placeholder="Write your message...">
+        </textarea>
+
+    </div>
+
+    <button
+        class="send"
+        onclick="sendDemo()">
+
+        Send
+
+    </button>
+
+</div>
+
+
+<script>
+
+/* ================= EMAIL DATA ================= */
+
+const mails = [
+
+    {
+        sender: "GitHub",
+
+        subject:
+        "🚀 Your GitHub launch code",
+
+        preview:
+        "Here's your GitHub launch code! Continue sig...",
+
+        date:
+        "2:57 PM",
+
+        body:
+        "Your GitHub launch code is ready. This is a demo email inside the Gmail-style interface. Continue signing in to your account if this were a real mailbox."
+    },
+
+
+    {
+        sender: "Google",
+
+        subject:
+        "Security alert for flyrightsimmmigrationconsultants@gmail.com",
+
+        preview:
+        "This is a security notification for your account...",
+
+        date:
+        "2:34 PM",
+
+        body:
+        "We detected a security-related event on your Google account. This is demonstration content for the interface."
+    },
+
+
+    {
+        sender: "e.statement 8",
+
+        subject:
+        "Money Transfer via Raast Payment",
+
+        preview:
+        "Transaction Successful Hi AHMED ...",
+
+        date:
+        "2:14 PM",
+
+        body:
+        "Your transaction was successful. This is sample email content for the Gmail UI demo."
+    },
+
+
+    {
+        sender: "Temu",
+
+        subject:
+        "Your patience has paid off!",
+
+        preview:
+        "Please Confirm: Your Rs.840 Offer",
+
+        date:
+        "12:50 PM",
+
+        body:
+        "This is sample promotional email content. It demonstrates opening an individual message."
+    },
+
+
+    {
+        sender: "Temu",
+
+        subject:
+        "Ahmed Ali, did you recently sign into Temu?",
+
+        preview:
+        "Hi Ahmed Ali, did you just ...",
+
+        date:
+        "Oct 4",
+
+        body:
+        "This is a sample security notification email."
+    },
+
+
+    {
+        sender: "e.statement",
+
+        subject:
+        "Money Transfer via Raast Payment",
+
+        preview:
+        "Transaction Successful Hi AHMED ...",
+
+        date:
+        "Oct 3",
+
+        body:
+        "Sample transaction email."
+    },
+
+
+    {
+        sender: "e.statement",
+
+        subject:
+        "Money Transfer via Raast Payment",
+
+        preview:
+        "Transaction Successful Hi AHMED ...",
+
+        date:
+        "Oct 2",
+
+        body:
+        "Sample transaction email."
+    },
+
+
+    {
+        sender: "e.statement 2",
+
+        subject:
+        "Easypaisa Mobile Bundle Receipt",
+
+        preview:
+        "Transaction Successful Hi AHMED A...",
+
+        date:
+        "Oct 1",
+
+        body:
+        "Sample receipt email."
+    },
+
+
+    {
+        sender: "e.statement 2",
+
+        subject:
+        "Easypaisa Money Transfer Receipt",
+
+        preview:
+        "Transaction Successful Hi AHMED...",
+
+        date:
+        "Sep 30",
+
+        body:
+        "Sample receipt email."
+    }
+
+];
+
+
+/* ================= DISPLAY EMAILS ================= */
+
+const list =
+document.getElementById("mailList");
+
+
+mails.forEach(
+
+    (mail, index) => {
+
+        const row =
+        document.createElement("div");
+
+        row.className =
+        "mail " +
+        (index < 5 ? "unread" : "");
+
+
+        row.innerHTML = `
+
+            <span class="check"></span>
+
+            <span class="star">
+                ☆
+            </span>
+
+            <span class="sender">
+                ${mail.sender}
+            </span>
+
+            <span class="subject">
+
+                ${mail.subject}
+
+                <span class="preview">
+
+                    - ${mail.preview}
+
+                </span>
+
+            </span>
+
+            <span class="date">
+
+                ${mail.date}
+
+            </span>
+
+        `;
+
+
+        row.onclick =
+        function() {
+
+            openMail(mail);
+
+        };
+
+
+        list.appendChild(row);
+
+    }
+
+);
+
+
+/* ================= OPEN EMAIL ================= */
+
+function openMail(mail) {
+
+    document
+    .getElementById("inbox")
+    .classList
+    .add("hide");
+
+
+    document
+    .getElementById("reader")
+    .classList
+    .add("show");
+
+
+    document
+    .getElementById("readerContent")
+    .innerHTML = `
+
+        <div class="reader-title">
+
+            ${mail.subject}
+
+        </div>
+
+
+        <div class="message-meta">
+
+            <div class="message-avatar">
+
+                ${mail.sender.charAt(0)}
+
+            </div>
+
+
+            <div class="meta-text">
+
+                <b>
+                    ${mail.sender}
+                </b>
+
+                <br>
+
+                <span>
+                    to me
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="body">
+
+            ${mail.body}
+
+            <div class="reply">
+
+                ↩ Reply
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ================= CLOSE EMAIL ================= */
+
+function closeMail() {
+
+    document
+    .getElementById("reader")
+    .classList
+    .remove("show");
+
+
+    document
+    .getElementById("inbox")
+    .classList
+    .remove("hide");
+
+}
+
+
+/* ================= COMPOSE ================= */
+
+function openCompose() {
+
+    document
+    .getElementById("composeBox")
+    .classList
+    .add("show");
+
+}
+
+
+function closeCompose() {
+
+    document
+    .getElementById("composeBox")
+    .classList
+    .remove("show");
+
+}
+
+
+function sendDemo() {
+
+    alert(
+        "Demo message sent!"
+    );
+
+    closeCompose();
+
+}
+
+</script>
 
 </body>
 </html>
