@@ -2,541 +2,585 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gmail Inbox Demo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gmail</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#202124;
+    background:#fff;
+    overflow:hidden;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #202124;
-    background: #fff;
+/* ================= HEADER ================= */
+
+.header{
+    height:104px;
+    background:#f8fafd;
+    display:flex;
+    align-items:center;
+    padding:0 34px;
+    gap:28px;
 }
 
-button,
-input,
-textarea {
-    font-family: inherit;
+.menu{
+    font-size:29px;
+    width:32px;
+    cursor:pointer;
 }
 
-/* ================= TOP BAR ================= */
-
-.top {
-    height: 96px;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    gap: 28px;
-    background: #f8fafd;
+.gmail{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:265px;
+    font-size:29px;
 }
 
-.menu {
-    font-size: 29px;
-    width: 34px;
-    cursor: pointer;
+.gmailLogo{
+    font-size:43px;
+    font-weight:bold;
+    letter-spacing:-8px;
+    color:#4285f4;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 28px;
-    min-width: 270px;
+.gmailLogo::first-letter{
+    color:#ea4335;
 }
 
-.gmail-logo {
-    color: #ea4335;
-    font-size: 42px;
-    font-weight: 900;
+.search{
+    height:64px;
+    width:790px;
+    background:#e8eef7;
+    border-radius:34px;
+    display:flex;
+    align-items:center;
+    padding:0 27px;
+    color:#5f6368;
+    font-size:20px;
 }
 
-.search {
-    height: 64px;
-    max-width: 790px;
-    flex: 1;
-    background: #e9eef6;
-    border-radius: 34px;
-    display: flex;
-    align-items: center;
-    padding: 0 27px;
-    color: #59636f;
-    font-size: 21px;
+.searchIcon{
+    font-size:34px;
+    margin-right:18px;
 }
 
-.search-icon {
-    font-size: 34px;
-    margin-right: 20px;
+.search input{
+    background:transparent;
+    border:0;
+    outline:0;
+    width:100%;
+    font-size:20px;
 }
 
-.filter {
-    margin-left: auto;
-    font-size: 25px;
+.sliders{
+    font-size:25px;
 }
 
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 27px;
-    font-size: 26px;
-    margin-left: auto;
+.headerRight{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    font-size:25px;
 }
 
-.upgrade {
-    background: #d7e7ff;
-    border: 0;
-    border-radius: 28px;
-    padding: 15px 28px;
-    color: #174ea6;
-    cursor: pointer;
+.upgrade{
+    border:0;
+    background:#d8e7ff;
+    color:#174ea6;
+    padding:15px 30px;
+    border-radius:28px;
+    font-size:17px;
 }
 
-.avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #e87500;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-size: 22px;
+.profile{
+    width:49px;
+    height:49px;
+    border-radius:50%;
+    background:#e87500;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
 }
 
-/* ================= LAYOUT ================= */
+/* ================= BODY ================= */
 
-.layout {
-    display: flex;
-    height: calc(100vh - 96px);
+.container{
+    height:calc(100vh - 104px);
+    display:flex;
 }
 
-.sidebar {
-    width: 390px;
-    background: #f8fafd;
-    padding: 25px 0 0 5px;
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:390px;
+    background:#f8fafd;
+    padding-top:18px;
 }
 
-.compose {
-    background: #c2e7ff;
-    border: 0;
-    border-radius: 18px;
-    padding: 20px 34px;
-    margin-bottom: 18px;
-    font-size: 18px;
-    cursor: pointer;
+.compose{
+    margin:0 0 18px 5px;
+    width:220px;
+    height:88px;
+    border:0;
+    border-radius:20px;
+    background:#c2e7ff;
+    font-size:19px;
+    cursor:pointer;
 }
 
-.nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.compose:hover{
+    box-shadow:0 2px 8px #c9d4df;
 }
 
-.nav li {
-    height: 49px;
-    padding: 0 25px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border-radius: 0 25px 25px 0;
-    font-size: 18px;
-    cursor: pointer;
+.menuItem{
+    height:50px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    padding:0 27px;
+    border-radius:0 25px 25px 0;
+    font-size:18px;
+    cursor:pointer;
 }
 
-.nav li:hover {
-    background: #e8f0fe;
+.menuItem:hover{
+    background:#e9f1fc;
 }
 
-.nav li.active {
-    background: #cfe1fb;
-    font-weight: 700;
+.menuItem.active{
+    background:#cfe1fa;
+    font-weight:bold;
 }
 
-.num {
-    margin-left: auto;
+.menuIcon{
+    width:25px;
+    text-align:center;
+    font-size:22px;
 }
 
-.labels {
-    font-size: 18px;
-    font-weight: 700;
-    padding: 31px 35px;
+.number{
+    margin-left:auto;
+}
+
+.labels{
+    padding:31px 38px;
+    font-size:18px;
+    font-weight:bold;
 }
 
 /* ================= MAIN ================= */
 
-.main {
-    flex: 1;
-    min-width: 0;
+.main{
+    flex:1;
+    min-width:0;
 }
 
-.toolbar {
-    height: 73px;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    gap: 26px;
-    border-bottom: 1px solid #eee;
-    font-size: 25px;
+.toolbar{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:27px;
+    padding:0 30px;
+    border-bottom:1px solid #eee;
+    font-size:25px;
 }
 
-.toolbar span {
-    cursor: pointer;
+.toolbarIcon{
+    cursor:pointer;
 }
 
-.count {
-    margin-left: auto;
-    font-size: 16px;
-    color: #555;
+.mailCount{
+    margin-left:auto;
+    font-size:16px;
+    color:#5f6368;
 }
 
 /* ================= TABS ================= */
 
-.tabs {
-    height: 84px;
-    display: flex;
-    border-bottom: 1px solid #ddd;
+.tabs{
+    height:84px;
+    display:flex;
+    border-bottom:1px solid #ddd;
 }
 
-.tab {
-    flex: 1;
-    padding: 22px 38px;
-    font-size: 20px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
+.tab{
+    flex:1;
+    padding:18px 42px;
+    font-size:20px;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
 }
 
-.tab.active {
-    border-color: #1967d2;
-    color: #1967d2;
+.tab.active{
+    color:#1967d2;
+    border-bottom-color:#1967d2;
 }
 
-.badge {
-    border-radius: 14px;
-    padding: 3px 9px;
-    font-size: 14px;
-    color: white;
-    background: #188038;
-    margin-left: 8px;
+.badge{
+    display:inline-block;
+    padding:3px 9px;
+    margin-left:7px;
+    border-radius:12px;
+    color:white;
+    font-size:13px;
+    background:#188038;
 }
 
-.blue {
-    background: #1a73e8;
+.badge.blue{
+    background:#1a73e8;
 }
 
-.orange {
-    background: #e37400;
+.badge.orange{
+    background:#e37400;
 }
 
-.sub {
-    display: block;
-    color: #777;
-    font-size: 16px;
-    margin-top: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.tabPreview{
+    display:block;
+    margin-top:6px;
+    color:#777;
+    font-size:16px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-/* ================= EMAIL LIST ================= */
+/* ================= EMAIL ================= */
 
-.mail {
-    height: 62px;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    gap: 17px;
-    border-bottom: 1px solid #e6e6e6;
-    cursor: pointer;
-    font-size: 17px;
+.email{
+    height:61px;
+    display:flex;
+    align-items:center;
+    padding:0 30px;
+    gap:17px;
+    border-bottom:1px solid #e5e5e5;
+    cursor:pointer;
 }
 
-.mail:hover {
-    box-shadow: 0 1px 5px #ccc;
-    position: relative;
-    z-index: 2;
+.email:hover{
+    box-shadow:0 1px 6px #cfcfcf;
+    position:relative;
+    z-index:3;
 }
 
-.mail.unread {
-    background: #f1f6fc;
+.email.unread{
+    background:#f1f6fc;
 }
 
-.check {
-    width: 22px;
-    height: 22px;
-    border: 2px solid #aeb4bb;
-    border-radius: 3px;
-    flex: none;
+.checkbox{
+    width:22px;
+    height:22px;
+    border:2px solid #aeb4ba;
+    border-radius:3px;
+    flex-shrink:0;
 }
 
-.star {
-    font-size: 27px;
-    color: #a7adb4;
-    width: 30px;
+.star{
+    width:30px;
+    font-size:27px;
+    color:#adb3b9;
 }
 
-.sender {
-    width: 290px;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.star:hover{
+    color:#f4b400;
 }
 
-.subject {
-    flex: 1;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.sender{
+    width:290px;
+    font-size:17px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.preview {
-    font-weight: 400;
-    color: #666;
+.subject{
+    flex:1;
+    font-size:17px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.date {
-    width: 82px;
-    text-align: right;
-    font-weight: 700;
-    font-size: 15px;
+.preview{
+    font-weight:normal;
+    color:#666;
 }
 
-/* ================= OPEN EMAIL ================= */
-
-.reader {
-    display: none;
-    height: 100%;
-    overflow: auto;
+.date{
+    width:85px;
+    text-align:right;
+    font-size:15px;
+    font-weight:bold;
 }
 
-.reader.show {
-    display: block;
+/* ================= EMAIL READER ================= */
+
+.reader{
+    display:none;
+    height:100%;
+    overflow:auto;
+    background:white;
 }
 
-.inbox.hide {
-    display: none;
+.reader.active{
+    display:block;
 }
 
-.reader-head {
-    height: 73px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 0 30px;
-    font-size: 24px;
+.inbox.hidden{
+    display:none;
 }
 
-.reader-head span {
-    cursor: pointer;
+.readerToolbar{
+    height:78px;
+    display:flex;
+    align-items:center;
+    gap:27px;
+    padding:0 30px;
+    border-bottom:1px solid #eee;
+    font-size:24px;
 }
 
-.reader-title {
-    font-size: 23px;
-    padding: 30px 50px 15px;
+.readerToolbar span{
+    cursor:pointer;
 }
 
-.message-meta {
-    display: flex;
-    gap: 15px;
-    padding: 0 50px 25px;
+.emailTitle{
+    padding:32px 55px 18px;
+    font-size:24px;
 }
 
-.message-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #e87500;
-    color: white;
-    display: grid;
-    place-items: center;
-    font-weight: bold;
+.emailInfo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 55px 25px;
 }
 
-.meta-text {
-    font-size: 15px;
+.emailAvatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#e87500;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
 }
 
-.body {
-    padding: 15px 110px 60px;
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 1000px;
+.emailText{
+    font-size:15px;
 }
 
-.reply {
-    margin-top: 35px;
-    border: 1px solid #dadce0;
-    border-radius: 20px;
-    padding: 12px 22px;
-    width: max-content;
-    color: #1a73e8;
-    cursor: pointer;
+.emailBody{
+    padding:20px 115px;
+    max-width:1050px;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.replyButton{
+    margin-top:40px;
+    border:1px solid #dadce0;
+    color:#1967d2;
+    width:100px;
+    padding:10px 18px;
+    border-radius:22px;
+    cursor:pointer;
 }
 
 /* ================= COMPOSE ================= */
 
-.compose-modal {
-    display: none;
-    position: fixed;
-    right: 25px;
-    bottom: 0;
-    width: 500px;
-    background: white;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 3px 20px #999;
-    z-index: 20;
+.composeBox{
+    display:none;
+    position:fixed;
+    right:25px;
+    bottom:0;
+    width:520px;
+    background:white;
+    border-radius:12px 12px 0 0;
+    box-shadow:0 2px 20px #999;
+    z-index:100;
 }
 
-.compose-modal.show {
-    display: block;
+.composeBox.active{
+    display:block;
 }
 
-.compose-title {
-    background: #f2f6fc;
-    padding: 14px 18px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
+.composeHeader{
+    background:#f2f6fc;
+    padding:14px 18px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
 }
 
-.compose-title span:last-child {
-    cursor: pointer;
+.composeHeader span:last-child{
+    cursor:pointer;
 }
 
-.field {
-    padding: 12px 18px;
-    border-bottom: 1px solid #eee;
+.composeInput{
+    border:0;
+    border-bottom:1px solid #eee;
+    outline:0;
+    width:100%;
+    padding:13px 18px;
+    font-size:15px;
 }
 
-.field input,
-.field textarea {
-    border: 0;
-    outline: 0;
-    width: 100%;
-    font-size: 15px;
+.composeMessage{
+    width:100%;
+    height:190px;
+    border:0;
+    outline:0;
+    padding:15px 18px;
+    resize:none;
+    font-size:15px;
 }
 
-.field textarea {
-    height: 180px;
-    resize: none;
+.send{
+    margin:14px 18px;
+    border:0;
+    border-radius:22px;
+    padding:10px 27px;
+    background:#0b57d0;
+    color:white;
+    cursor:pointer;
 }
 
-.send {
-    margin: 15px 18px;
-    background: #0b57d0;
-    color: #fff;
-    border: 0;
-    border-radius: 20px;
-    padding: 10px 25px;
-    cursor: pointer;
-}
+/* ================= RESPONSIVE ================= */
 
-/* ================= MOBILE ================= */
+@media(max-width:1100px){
 
-@media(max-width:1000px) {
-
-    .sidebar {
-        width: 250px;
+    .sidebar{
+        width:250px;
     }
 
-    .brand {
-        min-width: 150px;
+    .gmail{
+        width:170px;
     }
 
-    .upgrade {
-        display: none;
+    .headerRight .upgrade{
+        display:none;
     }
 
-    .sender {
-        width: 180px;
+    .sender{
+        width:190px;
     }
 }
 
-@media(max-width:700px) {
+@media(max-width:750px){
 
-    .sidebar {
-        display: none;
+    body{
+        overflow:auto;
     }
 
-    .brand {
-        min-width: auto;
+    .sidebar{
+        display:none;
     }
 
-    .actions span {
-        display: none;
+    .header{
+        height:80px;
+        padding:0 12px;
+        gap:12px;
     }
 
-    .top {
-        padding: 0 12px;
-        gap: 10px;
+    .gmail{
+        width:auto;
+        font-size:22px;
     }
 
-    .search {
-        font-size: 15px;
+    .search{
+        height:50px;
     }
 
-    .mail {
-        padding: 0 10px;
-        gap: 8px;
+    .headerRight{
+        display:none;
     }
 
-    .sender {
-        width: 100px;
+    .container{
+        height:calc(100vh - 80px);
     }
 
-    .body {
-        padding: 15px 25px;
+    .tabs{
+        overflow:hidden;
     }
 
-    .reader-title,
-    .message-meta {
-        padding-left: 25px;
+    .tab{
+        min-width:200px;
+        padding:18px;
     }
 
-    .compose-modal {
-        width: 95%;
-        right: 2.5%;
+    .sender{
+        width:100px;
+    }
+
+    .email{
+        padding:0 10px;
+        gap:8px;
+    }
+
+    .emailBody{
+        padding:20px;
+    }
+
+    .emailTitle,
+    .emailInfo{
+        padding-left:20px;
+    }
+
+    .composeBox{
+        width:95%;
+        right:2.5%;
     }
 }
 </style>
 </head>
 
+
 <body>
 
 <!-- ================= HEADER ================= -->
 
-<header class="top">
+<header class="header">
 
     <div class="menu">
         ☰
     </div>
 
-    <div class="brand">
-        <span class="gmail-logo">M</span>
+    <div class="gmail">
+        <span class="gmailLogo">M</span>
         <span>Gmail</span>
     </div>
 
     <div class="search">
 
-        <span class="search-icon">
+        <span class="searchIcon">
             ⌕
         </span>
 
-        <span>
-            Search mail
-        </span>
+        <input
+            id="search"
+            type="text"
+            placeholder="Search mail"
+            oninput="searchMail()">
 
-        <span class="filter">
+        <span class="sliders">
             ☷
         </span>
 
     </div>
 
-    <div class="actions">
+    <div class="headerRight">
 
         <span>?</span>
 
@@ -550,7 +594,7 @@ textarea {
 
         <span>⠿</span>
 
-        <span class="avatar">
+        <span class="profile">
             A
         </span>
 
@@ -559,7 +603,7 @@ textarea {
 </header>
 
 
-<div class="layout">
+<div class="container">
 
 <!-- ================= SIDEBAR ================= -->
 
@@ -569,92 +613,110 @@ textarea {
         class="compose"
         onclick="openCompose()">
 
-        ✎ &nbsp;
+        ✎ &nbsp;&nbsp;
         <b>Compose</b>
 
     </button>
 
-    <ul class="nav">
 
-        <li class="active">
+    <div class="menuItem active">
 
+        <span class="menuIcon">
             ▣
+        </span>
 
-            <span>
-                Inbox
-            </span>
+        <span>
+            Inbox
+        </span>
 
-            <span class="num">
-                1,049
-            </span>
+        <span class="number">
+            1,049
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ☆
+        </span>
 
-            <span>
-                Starred
-            </span>
+        <span>
+            Starred
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ◷
+        </span>
 
-            <span>
-                Snoozed
-            </span>
+        <span>
+            Snoozed
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ➤
+        </span>
 
-            <span>
-                Sent
-            </span>
+        <span>
+            Sent
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ▱
+        </span>
 
-            <span>
-                Drafts
-            </span>
+        <span>
+            Drafts
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ▢
+        </span>
 
-            <span>
-                Purchases
-            </span>
+        <span>
+            Purchases
+        </span>
 
-            <span class="num">
-                158
-            </span>
+        <span class="number">
+            158
+        </span>
 
-        </li>
+    </div>
 
-        <li>
 
+    <div class="menuItem">
+
+        <span class="menuIcon">
             ⌄
+        </span>
 
-            <span>
-                More
-            </span>
+        <span>
+            More
+        </span>
 
-        </li>
+    </div>
 
-    </ul>
 
     <div class="labels">
 
@@ -673,35 +735,36 @@ textarea {
 
 <main class="main">
 
+
+<!-- INBOX -->
+
 <section id="inbox" class="inbox">
 
     <div class="toolbar">
 
-        <span>
+        <span class="toolbarIcon">
             □
         </span>
 
-        <span>
+        <span class="toolbarIcon">
             ⌄
         </span>
 
-        <span>
+        <span class="toolbarIcon">
             ↻
         </span>
 
-        <span>
+        <span class="toolbarIcon">
             ⋮
         </span>
 
-        <div class="count">
-
+        <span class="mailCount">
             1–50 of 1,218
-            &nbsp;
+            &nbsp;&nbsp;
             ‹
             &nbsp;
             ›
-
-        </div>
+        </span>
 
     </div>
 
@@ -727,7 +790,7 @@ textarea {
                 50 new
             </span>
 
-            <span class="sub">
+            <span class="tabPreview">
                 Eva via 10times — Remin...
             </span>
 
@@ -743,7 +806,7 @@ textarea {
                 29 new
             </span>
 
-            <span class="sub">
+            <span class="tabPreview">
                 Facebook Friend Sugges...
             </span>
 
@@ -759,7 +822,7 @@ textarea {
                 48 new
             </span>
 
-            <span class="sub">
+            <span class="tabPreview">
                 ChatGPT — 4 new image...
             </span>
 
@@ -768,20 +831,20 @@ textarea {
     </div>
 
 
-    <!-- EMAILS -->
+    <!-- EMAIL LIST -->
 
-    <div id="mailList"></div>
+    <div id="emails"></div>
 
 </section>
 
 
-<!-- ================= EMAIL READER ================= -->
+<!-- ================= READER ================= -->
 
 <section id="reader" class="reader">
 
-    <div class="reader-head">
+    <div class="readerToolbar">
 
-        <span onclick="closeMail()">
+        <span onclick="closeEmail()">
             ←
         </span>
 
@@ -807,7 +870,7 @@ textarea {
 
     </div>
 
-    <div id="readerContent"></div>
+    <div id="emailContent"></div>
 
 </section>
 
@@ -820,9 +883,9 @@ textarea {
 
 <div
     id="composeBox"
-    class="compose-modal">
+    class="composeBox">
 
-    <div class="compose-title">
+    <div class="composeHeader">
 
         <span>
             New Message
@@ -834,33 +897,25 @@ textarea {
 
     </div>
 
-    <div class="field">
 
-        <input
-            type="text"
-            placeholder="Recipients">
+    <input
+        class="composeInput"
+        placeholder="Recipients">
 
-    </div>
 
-    <div class="field">
+    <input
+        class="composeInput"
+        placeholder="Subject">
 
-        <input
-            type="text"
-            placeholder="Subject">
 
-    </div>
+    <textarea
+        class="composeMessage"
+        placeholder="Write your message..."></textarea>
 
-    <div class="field">
-
-        <textarea
-            placeholder="Write your message...">
-        </textarea>
-
-    </div>
 
     <button
         class="send"
-        onclick="sendDemo()">
+        onclick="sendMessage()">
 
         Send
 
@@ -873,191 +928,119 @@ textarea {
 
 /* ================= EMAIL DATA ================= */
 
-const mails = [
+const mailData = [
 
-    {
-        sender: "GitHub",
+{
+sender:"GitHub",
+subject:"🚀 Your GitHub launch code",
+preview:"Here's your GitHub launch code! Continue sig...",
+date:"2:57 PM",
+body:"Your GitHub launch code is ready. This is a demonstration email inside this Gmail-style interface."
+},
 
-        subject:
-        "🚀 Your GitHub launch code",
+{
+sender:"Google",
+subject:"Security alert for flyrightsimmmigrationconsultants@gmail.com",
+preview:"This is a security notification for your account...",
+date:"2:34 PM",
+body:"We detected a security-related event on your Google account. This is demonstration content."
+},
 
-        preview:
-        "Here's your GitHub launch code! Continue sig...",
+{
+sender:"e.statement 8",
+subject:"Money Transfer via Raast Payment",
+preview:"Transaction Successful Hi AHMED ...",
+date:"2:14 PM",
+body:"Your transaction was successful. This is sample email content."
+},
 
-        date:
-        "2:57 PM",
+{
+sender:"Temu",
+subject:"Your patience has paid off!",
+preview:"Please Confirm: Your Rs.840 Offer",
+date:"12:50 PM",
+body:"This is sample promotional email content."
+},
 
-        body:
-        "Your GitHub launch code is ready. This is a demo email inside the Gmail-style interface. Continue signing in to your account if this were a real mailbox."
-    },
+{
+sender:"Temu",
+subject:"Ahmed Ali, did you recently sign into Temu?",
+preview:"Hi Ahmed Ali, did you just ...",
+date:"Oct 4",
+body:"This is a sample security notification."
+},
 
+{
+sender:"e.statement",
+subject:"Money Transfer via Raast Payment",
+preview:"Transaction Successful Hi AHMED ...",
+date:"Oct 3",
+body:"Sample transaction email."
+},
 
-    {
-        sender: "Google",
+{
+sender:"e.statement",
+subject:"Money Transfer via Raast Payment",
+preview:"Transaction Successful Hi AHMED ...",
+date:"Oct 2",
+body:"Sample transaction email."
+},
 
-        subject:
-        "Security alert for flyrightsimmmigrationconsultants@gmail.com",
+{
+sender:"e.statement 2",
+subject:"Easypaisa Mobile Bundle Receipt",
+preview:"Transaction Successful Hi AHMED A...",
+date:"Oct 1",
+body:"Sample receipt email."
+},
 
-        preview:
-        "This is a security notification for your account...",
-
-        date:
-        "2:34 PM",
-
-        body:
-        "We detected a security-related event on your Google account. This is demonstration content for the interface."
-    },
-
-
-    {
-        sender: "e.statement 8",
-
-        subject:
-        "Money Transfer via Raast Payment",
-
-        preview:
-        "Transaction Successful Hi AHMED ...",
-
-        date:
-        "2:14 PM",
-
-        body:
-        "Your transaction was successful. This is sample email content for the Gmail UI demo."
-    },
-
-
-    {
-        sender: "Temu",
-
-        subject:
-        "Your patience has paid off!",
-
-        preview:
-        "Please Confirm: Your Rs.840 Offer",
-
-        date:
-        "12:50 PM",
-
-        body:
-        "This is sample promotional email content. It demonstrates opening an individual message."
-    },
-
-
-    {
-        sender: "Temu",
-
-        subject:
-        "Ahmed Ali, did you recently sign into Temu?",
-
-        preview:
-        "Hi Ahmed Ali, did you just ...",
-
-        date:
-        "Oct 4",
-
-        body:
-        "This is a sample security notification email."
-    },
-
-
-    {
-        sender: "e.statement",
-
-        subject:
-        "Money Transfer via Raast Payment",
-
-        preview:
-        "Transaction Successful Hi AHMED ...",
-
-        date:
-        "Oct 3",
-
-        body:
-        "Sample transaction email."
-    },
-
-
-    {
-        sender: "e.statement",
-
-        subject:
-        "Money Transfer via Raast Payment",
-
-        preview:
-        "Transaction Successful Hi AHMED ...",
-
-        date:
-        "Oct 2",
-
-        body:
-        "Sample transaction email."
-    },
-
-
-    {
-        sender: "e.statement 2",
-
-        subject:
-        "Easypaisa Mobile Bundle Receipt",
-
-        preview:
-        "Transaction Successful Hi AHMED A...",
-
-        date:
-        "Oct 1",
-
-        body:
-        "Sample receipt email."
-    },
-
-
-    {
-        sender: "e.statement 2",
-
-        subject:
-        "Easypaisa Money Transfer Receipt",
-
-        preview:
-        "Transaction Successful Hi AHMED...",
-
-        date:
-        "Sep 30",
-
-        body:
-        "Sample receipt email."
-    }
+{
+sender:"e.statement 2",
+subject:"Easypaisa Money Transfer Receipt",
+preview:"Transaction Successful Hi AHMED...",
+date:"Sep 30",
+body:"Sample receipt email."
+}
 
 ];
 
 
-/* ================= DISPLAY EMAILS ================= */
+/* ================= SHOW EMAILS ================= */
 
-const list =
-document.getElementById("mailList");
+const emails =
+document.getElementById("emails");
 
 
-mails.forEach(
+function displayEmails(data){
 
-    (mail, index) => {
+    emails.innerHTML="";
 
-        const row =
+    data.forEach((mail,index)=>{
+
+        const email =
         document.createElement("div");
 
-        row.className =
-        "mail " +
+        email.className =
+        "email " +
         (index < 5 ? "unread" : "");
 
 
-        row.innerHTML = `
+        email.innerHTML = `
 
-            <span class="check"></span>
+            <span class="checkbox"></span>
 
-            <span class="star">
+            <span
+                class="star"
+                onclick="event.stopPropagation()">
+
                 ☆
+
             </span>
 
             <span class="sender">
+
                 ${mail.sender}
+
             </span>
 
             <span class="subject">
@@ -1081,58 +1064,60 @@ mails.forEach(
         `;
 
 
-        row.onclick =
-        function() {
+        email.onclick=function(){
 
-            openMail(mail);
+            openEmail(mail);
 
         };
 
 
-        list.appendChild(row);
+        emails.appendChild(email);
 
-    }
+    });
 
-);
+}
+
+
+displayEmails(mailData);
 
 
 /* ================= OPEN EMAIL ================= */
 
-function openMail(mail) {
+function openEmail(mail){
 
     document
     .getElementById("inbox")
     .classList
-    .add("hide");
+    .add("hidden");
 
 
     document
     .getElementById("reader")
     .classList
-    .add("show");
+    .add("active");
 
 
     document
-    .getElementById("readerContent")
-    .innerHTML = `
+    .getElementById("emailContent")
+    .innerHTML=`
 
-        <div class="reader-title">
+        <div class="emailTitle">
 
             ${mail.subject}
 
         </div>
 
 
-        <div class="message-meta">
+        <div class="emailInfo">
 
-            <div class="message-avatar">
+            <div class="emailAvatar">
 
                 ${mail.sender.charAt(0)}
 
             </div>
 
 
-            <div class="meta-text">
+            <div class="emailText">
 
                 <b>
                     ${mail.sender}
@@ -1149,11 +1134,13 @@ function openMail(mail) {
         </div>
 
 
-        <div class="body">
+        <div class="emailBody">
 
             ${mail.body}
 
-            <div class="reply">
+            <div
+                class="replyButton"
+                onclick="alert('Reply window')">
 
                 ↩ Reply
 
@@ -1168,51 +1155,88 @@ function openMail(mail) {
 
 /* ================= CLOSE EMAIL ================= */
 
-function closeMail() {
+function closeEmail(){
 
     document
     .getElementById("reader")
     .classList
-    .remove("show");
+    .remove("active");
 
 
     document
     .getElementById("inbox")
     .classList
-    .remove("hide");
+    .remove("hidden");
 
 }
 
 
 /* ================= COMPOSE ================= */
 
-function openCompose() {
+function openCompose(){
 
     document
     .getElementById("composeBox")
     .classList
-    .add("show");
+    .add("active");
 
 }
 
 
-function closeCompose() {
+function closeCompose(){
 
     document
     .getElementById("composeBox")
     .classList
-    .remove("show");
+    .remove("active");
 
 }
 
 
-function sendDemo() {
+function sendMessage(){
 
-    alert(
-        "Demo message sent!"
-    );
+    alert("Demo message sent!");
 
     closeCompose();
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchMail(){
+
+    const query =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+    const filtered =
+    mailData.filter(mail =>
+
+        mail.sender
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        mail.subject
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        mail.preview
+        .toLowerCase()
+        .includes(query)
+
+    );
+
+
+    displayEmails(filtered);
 
 }
 
